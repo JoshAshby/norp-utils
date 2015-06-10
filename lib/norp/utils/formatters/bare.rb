@@ -9,9 +9,15 @@ module Norp
           messages = []
 
           @files.each do |file|
+            next unless file.messages.any?
+
             messages << "File: #{file.path}"
 
-            file.messages.map{ |msg| "#{ msg.level }: #{ msg.body }" }.each{ |msg| messages << msg }
+            file.messages.each do |msg|
+              body = msg.body.split("\n").map{ |l| "    #{ l }" }.join "\n"
+
+              messages << "  #{ msg.level }: Line ##{ msg.line }\n#{ body }"
+            end
 
             messages << ""
           end

@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'norp', '~> 0.1.0'
   spec.add_dependency 'flay', '~> 2.6.1'
+  spec.add_dependency 'reek', '~> 2.2.1'
 end

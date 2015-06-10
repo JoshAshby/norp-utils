@@ -23,14 +23,12 @@ module Norp
 
           results.each do |item|
             if item.identical?
-              match_type = "Identical"
-              level = :warning
+              match_type, level = "Identical", :warning
             else
-              match_type = "Similar"
-              level = :info
+              match_type, level = "Similar", :info
             end
 
-            msg = ["#{ match_type } code found"]
+            msg = [ "#{ match_type } code found" ]
 
             item.locations.each do |location|
               msg << "#{ location.file }:#{ location.line } #{ 'fuzzy' if location.fuzzy? }"
